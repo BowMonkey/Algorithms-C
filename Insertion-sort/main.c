@@ -13,19 +13,11 @@ void exch(int *array, int i, int j);
 void show(int *array, int size);
 bool isSorted(int *array, int size);
 double timeTrial(int n);
-
+void test();
 
 int main(void)
-{//验证排序性能
-	int i, n;
-	double time;
-	/*printf("准备验证的数据组数目：\n");
-	scanf_s("%d", &n);*/
-	for (i = 250; true; i += i)
-	{
-		time = timeTrial(i);
-		printf("%7d %5.1fs\n", i, time);
-	}
+{
+	test();
 	return 0;
 }
 
@@ -121,4 +113,14 @@ double timeTrial(int n)
 	end = clock();
 	return difftime(end, start) / 1000;
 }
-
+//验证排序性能
+void test()
+{
+	int i, n;
+	double time;
+	for (i = 250; true; i += i)
+	{
+		time = timeTrial(i);
+		printf("%7d %5.1fs\n", i, time);
+	}
+}

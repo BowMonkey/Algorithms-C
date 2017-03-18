@@ -5,12 +5,12 @@
 #include<stdbool.h>
 #include<time.h>
 
-void initialize(int *array,int size);
-void sort(int *array,int size);
+void initialize(int *array, int size);
+void sort(int *array, int size);
 bool less(int *array, int a, int b);
 void exch(int *array, int i, int j);
-void show(int *array,int size);
-bool isSorted(int *array,int size);
+void show(int *array, int size);
+bool isSorted(int *array, int size);
 double timeTrial(int n);
 
 
@@ -18,9 +18,7 @@ int main(void)
 {//验证排序性能
 	int i, n;
 	double time;
-	/*printf("准备验证的数据组数目：\n");
-	scanf_s("%d", &n);*/
-	for ( i = 250; true; i += i)
+	for (i = 250; true; i += i)
 	{
 		time = timeTrial(i);
 		printf("%7d %5.1fs\n", i, time);
@@ -29,18 +27,18 @@ int main(void)
 }
 
 //初始化数组，为数组赋从a.txt文件中获得的初值
-void initialize(int *array,int size)
+void initialize(int *array, int size)
 {
-	int i ;
-	
+	int i;
+
 	//正确的手动输入方法
 	/*printf("输入每个数组元素的值：\n");
 	for ( i = 0; i < size; i++)
 	{
-		printf("array[%d]", i);
-		scanf_s("%d", &array[i]);
+	printf("array[%d]", i);
+	scanf_s("%d", &array[i]);
 	}*/
-	
+
 	//正确的从文件输入方法
 	errno_t err;
 	FILE *fp;
@@ -52,7 +50,7 @@ void initialize(int *array,int size)
 	}
 	else
 	{//如正确打开，进行赋值操作
-		for ( i = 0; i < size; i++)
+		for (i = 0; i < size; i++)
 		{
 			fscanf_s(fp, "%d", &array[i]);
 		}
@@ -60,15 +58,15 @@ void initialize(int *array,int size)
 	}
 }
 //选择排序
-void sort(int *array,int size)
+void sort(int *array, int size)
 {
 	int i, j, min;
-	for ( i = 0; i < size; i++)
+	for (i = 0; i < size; i++)
 	{
 		min = i;
-		for ( j = i+1; j < size; j++)
+		for (j = i + 1; j < size; j++)
 		{
-			if (less(array,j,min))
+			if (less(array, j, min))
 			{
 				min = j;
 			}
@@ -84,7 +82,7 @@ bool less(int *array, int a, int b)
 	{
 		return false;
 	}
-	else 
+	else
 	{
 		return true;
 	}
@@ -99,7 +97,7 @@ void exch(int *array, int i, int j)
 	array[j] = temp;
 }
 //在控制台打印给定数组array的值
-void show(int *array,int size)
+void show(int *array, int size)
 {
 	int i;
 	for (i = 0; i < size; i++)
@@ -109,12 +107,12 @@ void show(int *array,int size)
 	printf("\n");
 }
 //判断给定数组array的元素是否有序,顺序则返回1，否则返回0
-bool isSorted(int *array,int size)
+bool isSorted(int *array, int size)
 {
 	int i;
 	for (i = 1; i < size; i++)
 	{
-		if (less(array, i,i-1))
+		if (less(array, i, i - 1))
 			return false;
 		return true;
 	}
